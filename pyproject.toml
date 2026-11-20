@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vacancy-watch"
+dynamic = ["version"]
+description = "Watch job boards for vacancies that fit your resume, score them with an LLM and get the good ones on Telegram"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+keywords = ["jobs", "job-search", "llm", "resume", "telegram", "ollama"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Topic :: Office/Business",
+]
+dependencies = [
+    "requests>=2.31",
+    "beautifulsoup4>=4.12",
+    "python-dotenv>=1.0",
+    "pypdf>=4.0",
+    "python-docx>=1.1",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+# dependencies of hiring-agent, for ATS=hiring-agent (the checkout itself is set with HIRING_AGENT)
+hiring-agent = ["pymupdf>=1.23", "pymupdf4llm==0.2.7", "pydantic>=2.11", "Jinja2>=3.1"]
+
+[project.scripts]
+vacancy-watch = "vacancy_watch.cli:main"
+
+[project.urls]
+Repository = "https://github.com/Re2044/vacancy-watch"
+
+[tool.setuptools]
+packages = ["vacancy_watch"]
+
+[tool.setuptools.dynamic]
+version = { attr = "vacancy_watch.__version__" }
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = ["E731"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

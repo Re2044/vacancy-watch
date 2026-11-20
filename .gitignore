@@ -1,26 +1,32 @@
-# Secrets (TG_TOKEN, TG_CHAT, overrides)
+# Secrets and personal settings
 .env
 .env.*
+!.env.example
+prefs.md
+
+# Runtime data (seen jobs, evaluations, labels, log)
+data/
+*.log
+
+# Resumes
+*.pdf
+*.docx
+resume*.txt
+resume*.md
+*.resume.json
+*.github.json
 
 # Python
 __pycache__/
 *.py[cod]
+*.egg-info/
+build/
+dist/
 .venv/
 venv/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-
-# Runtime state written by watch.py
-seen.json
-jobs.jsonl
-labels.jsonl
-*.log
-
-# Personal data: resume and its parsed caches (<resume>.resume.json, <resume>.github.json)
-*.pdf
-*.resume.json
-*.github.json
 
 # Editors / OS
 .idea/
